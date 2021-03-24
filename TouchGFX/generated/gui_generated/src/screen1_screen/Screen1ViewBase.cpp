@@ -3,19 +3,27 @@
 /*********************************************************************************/
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
-#include "BitmapDatabase.hpp"
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen1ViewBase::Screen1ViewBase()
 {
 
+    __background.setPosition(0, 0, 480, 272);
+    __background.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
+
     box1.setPosition(0, 0, 480, 272);
-    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
 
-    toggleButton1.setXY(176, 117);
-    toggleButton1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_TOGGLEBARS_TOGGLE_ROUND_LARGE_BUTTON_OFF_ID), touchgfx::Bitmap(BITMAP_BLUE_TOGGLEBARS_TOGGLE_ROUND_LARGE_BUTTON_ON_ID));
+    textAreaAD.setPosition(150, 121, 181, 31);
+    textAreaAD.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    textAreaAD.setLinespacing(0);
+    Unicode::snprintf(textAreaADBuffer, TEXTAREAAD_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID2).getText());
+    textAreaAD.setWildcard(textAreaADBuffer);
+    textAreaAD.setTypedText(touchgfx::TypedText(T_SINGLEUSEID1));
 
+    add(__background);
     add(box1);
-    add(toggleButton1);
+    add(textAreaAD);
 }
 
 void Screen1ViewBase::setupScreen()

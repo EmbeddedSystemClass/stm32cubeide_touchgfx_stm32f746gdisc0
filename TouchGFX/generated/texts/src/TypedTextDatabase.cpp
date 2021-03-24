@@ -9,7 +9,7 @@ extern touchgfx::GeneratedFont& getFont_verdana_20_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_40_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_10_4bpp();
 
-const touchgfx::Font* _fonts[] =
+const touchgfx::Font* touchgfx_fonts[] =
 {
     &(getFont_verdana_20_4bpp()),
     &(getFont_verdana_40_4bpp()),
@@ -22,15 +22,14 @@ extern const touchgfx::TypedText::TypedTextData* const typedTextDatabaseArray[];
 TEXT_LOCATION_FLASH_PRAGMA
 const touchgfx::TypedText::TypedTextData typedText_database_DEFAULT[] TEXT_LOCATION_FLASH_ATTRIBUTE =
 {
+    { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR }
-
 };
 
 TEXT_LOCATION_FLASH_PRAGMA
 const touchgfx::TypedText::TypedTextData* const typedTextDatabaseArray[] TEXT_LOCATION_FLASH_ATTRIBUTE =
 {
     typedText_database_DEFAULT
-
 };
 
 namespace TypedTextDatabase
@@ -47,13 +46,13 @@ uint16_t getInstanceSize()
 
 const touchgfx::Font** getFonts()
 {
-    return _fonts;
+    return touchgfx_fonts;
 }
 
 const touchgfx::Font* setFont(touchgfx::FontId fontId, const touchgfx::Font* font)
 {
-    const touchgfx::Font* old = _fonts[fontId];
-    _fonts[fontId] = font;
+    const touchgfx::Font* old = touchgfx_fonts[fontId];
+    touchgfx_fonts[fontId] = font;
     return old;
 }
 
@@ -62,13 +61,13 @@ void resetFont(touchgfx::FontId fontId)
     switch (fontId)
     {
     case 0:
-        _fonts[0] = &(getFont_verdana_20_4bpp());
+        touchgfx_fonts[0] = &(getFont_verdana_20_4bpp());
         break;
     case 1:
-        _fonts[1] = &(getFont_verdana_40_4bpp());
+        touchgfx_fonts[1] = &(getFont_verdana_40_4bpp());
         break;
     case 2:
-        _fonts[2] = &(getFont_verdana_10_4bpp());
+        touchgfx_fonts[2] = &(getFont_verdana_10_4bpp());
         break;
     }
 }
